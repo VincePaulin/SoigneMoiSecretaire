@@ -12,7 +12,7 @@ class NavigationSidebar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 200,
-      color: Colors.white,
+      color: Colors.blueGrey[50],
       child: Column(
         children: [
           DrawerHeader(

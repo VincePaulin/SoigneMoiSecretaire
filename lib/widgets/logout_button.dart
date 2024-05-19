@@ -23,7 +23,7 @@ class LogoutButton extends StatelessWidget {
         },
         child: const Text(
           'Se déconnecter',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.red),
         ),
       ),
     );
