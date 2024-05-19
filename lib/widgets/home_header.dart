@@ -22,21 +22,27 @@ class HomeHeader extends StatelessWidget {
         title = 'Tableau de bord';
     }
 
-    return Row(
-      children: [
-        Expanded(
-          child: Text(
-            title,
-            key: Key('pageTitle_$title'),
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
+    return SizedBox(
+      height: 150,
+      child: Padding(
+        padding: const EdgeInsets.all(18.0),
+        child: Row(
+          children: [
+            Expanded(
+              child: Text(
+                title,
+                key: Key('pageTitle_$title'),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+            ),
+            const CircleAvatar(
+              backgroundImage: AssetImage('assets/avatar.png'),
+            ),
+            const SizedBox(width: 8),
+            const Text('Secretaire'),
+          ],
         ),
-        const CircleAvatar(
-          backgroundImage: AssetImage('assets/avatar.png'),
-        ),
-        const SizedBox(width: 8),
-        const Text('Secretaire'),
-      ],
+      ),
     );
   }
 }
