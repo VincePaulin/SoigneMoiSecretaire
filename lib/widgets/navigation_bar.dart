@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:soigne_moi_secretaire/config/app_config.dart';
 import 'package:soigne_moi_secretaire/screens/home/home.dart';
 
+import 'logout_button.dart';
+
 class NavigationSidebar extends StatelessWidget {
   final HomeController controller;
   const NavigationSidebar({super.key, required this.controller});
@@ -37,12 +39,8 @@ class NavigationSidebar extends StatelessWidget {
             index: 2,
             context: context,
           ),
-          sidebarItem(
-            icon: Icons.logout,
-            label: 'Déconnexion',
-            index: 3,
-            context: context,
-          ),
+          const Spacer(),
+          const LogoutButton()
         ],
       ),
     );
