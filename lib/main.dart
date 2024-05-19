@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:soigne_moi_secretaire/config/app_colors.dart';
 import 'package:soigne_moi_secretaire/screens/home/home.dart';
 import 'package:soigne_moi_secretaire/screens/login/login.dart';
 import 'package:soigne_moi_secretaire/utils/wrapper.dart';
@@ -18,10 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'SoigneMoi Secretaire',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: buildAppTheme(),
       initialRoute: '/',
       routes: {
         '/': (context) => const Wrapper(),
