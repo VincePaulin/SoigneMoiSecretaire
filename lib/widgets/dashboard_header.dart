@@ -14,8 +14,7 @@ class DashboardHeader extends StatelessWidget {
           ),
         ),
         CircleAvatar(
-          backgroundImage:
-              AssetImage('assets/avatar.png'),
+          backgroundImage: AssetImage('assets/avatar.png'),
         ),
         const SizedBox(width: 8),
         Text('Prenom Nom'),
