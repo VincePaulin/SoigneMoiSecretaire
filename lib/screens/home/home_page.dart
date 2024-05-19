@@ -3,6 +3,7 @@ import 'package:soigne_moi_secretaire/screens/dashboard_page.dart';
 import 'package:soigne_moi_secretaire/screens/home/home.dart';
 import 'package:soigne_moi_secretaire/widgets/dashboard_header.dart';
 import 'package:soigne_moi_secretaire/widgets/navigation_bar.dart';
+import 'package:soigne_moi_secretaire/widgets/today_doctor.dart';
 
 class HomePage extends StatelessWidget {
   final HomeController controller;
@@ -14,7 +15,9 @@ class HomePage extends StatelessWidget {
       body: Row(
         children: [
           // Side navigation bar
-          NavigationSidebar(),
+          NavigationSidebar(
+            controller: controller,
+          ),
           // Main content
           Expanded(
             child: SingleChildScrollView(
@@ -26,7 +29,7 @@ class HomePage extends StatelessWidget {
                     // Main content
                     const SizedBox(height: 16),
                     // Inputs and outputs
-                    DashboardPage(),
+                    _buildPage(controller.selectedIndex)
                   ],
                 ),
               ),
@@ -35,5 +38,16 @@ class HomePage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Widget _buildPage(int index) {
+    switch (index) {
+      case 0:
+        return DashboardPage();
+      case 1:
+        return TodayDoctorList();
+      default:
+        return DashboardPage();
+    }
   }
 }

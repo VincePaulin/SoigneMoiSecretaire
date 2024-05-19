@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:soigne_moi_secretaire/config/app_config.dart';
+import 'package:soigne_moi_secretaire/screens/home/home.dart';
 
 class NavigationSidebar extends StatelessWidget {
-  const NavigationSidebar({super.key});
+  final HomeController controller;
+  const NavigationSidebar({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -14,32 +16,60 @@ class NavigationSidebar extends StatelessWidget {
           DrawerHeader(
             child: Text(
               AppConfig.applicationName,
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
           ),
-          SidebarItem(icon: Icons.home, label: 'Vue d\'ensemble'),
-          SidebarItem(icon: Icons.message, label: 'Patients'),
-          SidebarItem(icon: Icons.analytics, label: 'Docteurs'),
-          SidebarItem(icon: Icons.settings, label: 'Paramètres'),
-          SidebarItem(icon: Icons.logout, label: 'Déconnexion'),
+          sidebarItem(
+            icon: Icons.home,
+            label: 'Vue d\'ensemble',
+            index: 0,
+            context: context,
+          ),
+          sidebarItem(
+            icon: Icons.message,
+            label: 'Patients',
+            index: 1,
+            context: context,
+          ),
+          sidebarItem(
+            icon: Icons.analytics,
+            label: 'Docteurs',
+            index: 2,
+            context: context,
+          ),
+          sidebarItem(
+            icon: Icons.logout,
+            label: 'Déconnexion',
+            index: 3,
+            context: context,
+          ),
         ],
       ),
     );
   }
-}
 
-class SidebarItem extends StatelessWidget {
-  final IconData icon;
-  final String label;
+  Widget sidebarItem({
+    required IconData icon,
+    required String label,
+    required int index,
+    required BuildContext context,
+  }) {
+    final bool isSelected = controller.selectedIndex == index;
 
-  const SidebarItem({super.key, required this.icon, required this.label});
-
-  @override
-  Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(icon, color: Colors.blue),
-      title: Text(label),
-      onTap: () {},
+      leading: Icon(icon, color: isSelected ? Colors.blue : Colors.black),
+      title: Text(
+        label,
+        style: TextStyle(
+          color: isSelected ? Colors.blue : Colors.black,
+          fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+        ),
+      ),
+      selected: isSelected,
+      selectedTileColor: Colors.blue[50],
+      onTap: () {
+        controller.updateIndex(index);
+      },
     );
   }
 }

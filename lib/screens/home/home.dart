@@ -10,9 +10,15 @@ class Home extends StatefulWidget {
 }
 
 class HomeController extends State<Home> {
+  int selectedIndex = 0;
+
   @override
   void initState() {
     super.initState();
+  }
+
+  void updateIndex(int index) {
+    setState(() => selectedIndex = index);
   }
 
   @override
