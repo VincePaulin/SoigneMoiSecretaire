@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:soigne_moi_secretaire/screens/login/login.dart';
 import 'package:soigne_moi_secretaire/utils/wrapper.dart';
-import 'package:soigne_moi_secretaire/screens/login_page.dart';
 import 'package:soigne_moi_secretaire/screens/dashboard_page.dart';
 
 Future<void> main() async {
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const Wrapper(),
-        '/login': (context) => const LoginPage(),
+        '/login': (context) => const Login(),
         '/dashboard': (context) => const DashboardPage(),
       },
     );

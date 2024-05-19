@@ -1,41 +1,64 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:soigne_moi_secretaire/config/app_config.dart';
+import 'package:soigne_moi_secretaire/widgets/auth_widget.dart';
+import 'login.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
-
-  Future<void> _login(BuildContext context) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('isLoggedIn', true);
-    Navigator.pushReplacementNamed(context, '/dashboard');
-  }
+class LoginView extends StatelessWidget {
+  final LoginController controller;
+  const LoginView({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Connexion'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            TextField(
-              key: Key('emailField'),
-              decoration: InputDecoration(labelText: 'Email'),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: SingleChildScrollView(
+            child: Center(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: 400),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        // Logo
+                        Image.asset(
+                          'assets/logo.png',
+                          height: 100,
+                          width: 100,
+                        ),
+                        const SizedBox(height: 20),
+                        // Titre
+                        Text(
+                          AppConfig.applicationName,
+                          style: const TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    Column(
+                      children: [
+                        // Email TextField
+                        buildLoginEmailTextField(controller),
+                        const SizedBox(height: 10),
+                        // Password TextField
+                        buildLoginPasswordTextField(controller),
+                      ],
+                    ),
+                    const SizedBox(height: 30),
+                    // Login Button
+                    buildLoginButton(controller),
+                  ],
+                ),
+              ),
             ),
-            TextField(
-              key: Key('passwordField'),
-              decoration: InputDecoration(labelText: 'Mot de passe'),
-              obscureText: true,
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              key: Key('loginButton'),
-              onPressed: () => _login(context),
-              child: Text('Se connecter'),
-            ),
-          ],
+          ),
         ),
       ),
     );
