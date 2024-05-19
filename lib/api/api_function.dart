@@ -35,8 +35,6 @@ class Api {
 
       final data = response.data;
 
-      print(data);
-
       return data;
     } on DioException catch (e) {
       if (e.type == DioExceptionType.connectionError) {

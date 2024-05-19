@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:soigne_moi_secretaire/screens/home/home.dart';
 
 class ExitCard extends StatelessWidget {
-  const ExitCard({super.key});
+  final HomeController controller;
+  const ExitCard({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
-    final entries = [
-      {'name': 'John Doe', 'motif': 'Consultation'},
-      {'name': 'Jane Smith', 'motif': 'Opération'},
-      {'name': 'Bob Johnson', 'motif': 'Contrôle'},
-    ];
-
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -18,20 +14,22 @@ class ExitCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('Sorties'),
+            Text(
+              'Sorties',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             const SizedBox(height: 8),
-            // Use Flexible with FlexFit.loose to avoid undefined constraints
-            Flexible(
-              fit: FlexFit.loose,
+            Container(
+              height: 200,
               child: ListView.builder(
                 shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: entries.length,
+                itemCount: controller.outputs.length,
                 itemBuilder: (context, index) {
-                  final entry = entries[index];
+                  final output = controller.outputs[index];
                   return ListTile(
-                    title: Text(entry['name']!),
-                    subtitle: Text(entry['motif']!),
+                    title:
+                        Text("${output.user?.firstName} ${output.user?.name}"),
+                    subtitle: Text(output.motif),
                   );
                 },
               ),

@@ -14,6 +14,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           // Side navigation bar
           NavigationSidebar(
@@ -44,11 +45,15 @@ class HomePage extends StatelessWidget {
   Widget _buildPage(int index) {
     switch (index) {
       case 0:
-        return DashboardPage();
+        return DashboardPage(
+          controller: controller,
+        );
       case 1:
         return TodayDoctorList();
       default:
-        return DashboardPage();
+        return DashboardPage(
+          controller: controller,
+        );
     }
   }
 }

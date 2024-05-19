@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:soigne_moi_secretaire/screens/home/home.dart';
 
 class EntryCard extends StatelessWidget {
-  const EntryCard({super.key});
+  final HomeController controller;
+  const EntryCard({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
-    // Example data for list view
-    final entries = [
-      {'name': 'John Doe', 'motif': 'Consultation'},
-      {'name': 'Jane Smith', 'motif': 'Opération'},
-      {'name': 'Bob Johnson', 'motif': 'Contrôle'},
-    ];
-
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -19,20 +14,21 @@ class EntryCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('Entrés'),
+            Text(
+              'Entrés',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             const SizedBox(height: 8),
-            // Use Flexible with FlexFit.loose to avoid undefined constraints
-            Flexible(
-              fit: FlexFit.loose,
+            Container(
+              height: 200,
               child: ListView.builder(
                 shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: entries.length,
+                itemCount: controller.entrys.length,
                 itemBuilder: (context, index) {
-                  final entry = entries[index];
+                  final entry = controller.entrys[index];
                   return ListTile(
-                    title: Text(entry['name']!),
-                    subtitle: Text(entry['motif']!),
+                    title: Text("${entry.user!.firstName} ${entry.user!.name}"),
+                    subtitle: Text(entry.motif),
                   );
                 },
               ),
