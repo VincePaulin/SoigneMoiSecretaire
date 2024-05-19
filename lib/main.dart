@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:soigne_moi_secretaire/screens/home/home.dart';
 import 'package:soigne_moi_secretaire/screens/login/login.dart';
 import 'package:soigne_moi_secretaire/utils/wrapper.dart';
-import 'package:soigne_moi_secretaire/screens/dashboard_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const Wrapper(),
         '/login': (context) => const Login(),
-        '/dashboard': (context) => const DashboardPage(),
+        '/home': (context) => const Home(),
       },
     );
   }

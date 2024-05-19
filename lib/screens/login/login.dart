@@ -92,7 +92,7 @@ class LoginController extends State<Login> {
         await prefs.setBool('isLoggedIn', true);
 
         // Redirect to the dashboard or do other necessary actions
-        Navigator.pushReplacementNamed(context, '/dashboard');
+        Navigator.pushReplacementNamed(context, '/home');
       }
     } on DioException catch (e) {
       if (kDebugMode) {

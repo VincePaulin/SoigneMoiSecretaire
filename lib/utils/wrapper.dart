@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:soigne_moi_secretaire/screens/dashboard_page.dart';
+import 'package:soigne_moi_secretaire/screens/home/home.dart';
 import 'package:soigne_moi_secretaire/screens/login/login.dart';
 
 class Wrapper extends StatelessWidget {
@@ -20,7 +20,7 @@ class Wrapper extends StatelessWidget {
           return const Center(child: CircularProgressIndicator());
         } else {
           if (snapshot.hasData && snapshot.data!) {
-            return const DashboardPage();
+            return const Home();
           } else {
             return const Login();
           }
