@@ -16,11 +16,22 @@ class NavigationSidebar extends StatelessWidget {
       child: Column(
         children: [
           DrawerHeader(
-            child: Text(
-              AppConfig.applicationName,
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-          ),
+              child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/logo.png',
+                height: 50,
+                width: 50,
+              ),
+              Text(
+                AppConfig.applicationName,
+                textAlign: TextAlign.center,
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+            ],
+          )),
           sidebarItem(
             key: const Key('nav_overview'),
             icon: Icons.home,
