@@ -9,6 +9,7 @@ class LogoutButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextButton(
+        key: const Key('logoutButton'),
         onPressed: () async {
           // Delete token from shared preferences
           final prefs = await SharedPreferences.getInstance();
@@ -17,16 +18,12 @@ class LogoutButton extends StatelessWidget {
 
           // Navigate to the login page
           if (context.mounted) {
-            // Navigate to the login page
-            Navigator.of(context).pushNamedAndRemoveUntil(
-              '/login',
-                  (Route<dynamic> route) => false,
-            );
+            Navigator.of(context).pushReplacementNamed('/login');
           }
         },
         child: const Text(
           'Se déconnecter',
-          style: TextStyle(color: Colors.red),
+          style: TextStyle(color: Colors.white),
         ),
       ),
     );

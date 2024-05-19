@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soigne_moi_secretaire/screens/dashboard_page.dart';
 import 'package:soigne_moi_secretaire/screens/home/home.dart';
-import 'package:soigne_moi_secretaire/widgets/dashboard_header.dart';
+import 'package:soigne_moi_secretaire/widgets/home_header.dart';
 import 'package:soigne_moi_secretaire/widgets/navigation_bar.dart';
 import 'package:soigne_moi_secretaire/widgets/today_doctor.dart';
 
@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
                   children: [
-                    DashboardHeader(),
+                    HomeHeader(controller: controller),
                     // Main content
                     const SizedBox(height: 16),
                     // Inputs and outputs

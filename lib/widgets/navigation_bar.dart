@@ -22,19 +22,22 @@ class NavigationSidebar extends StatelessWidget {
             ),
           ),
           sidebarItem(
+            key: const Key('nav_overview'),
             icon: Icons.home,
             label: 'Vue d\'ensemble',
             index: 0,
             context: context,
           ),
           sidebarItem(
-            icon: Icons.message,
+            key: const Key('nav_patients'),
+            icon: Icons.person,
             label: 'Patients',
             index: 1,
             context: context,
           ),
           sidebarItem(
-            icon: Icons.analytics,
+            key: const Key('nav_doctors'),
+            icon: Icons.local_hospital_rounded,
             label: 'Docteurs',
             index: 2,
             context: context,
@@ -47,6 +50,7 @@ class NavigationSidebar extends StatelessWidget {
   }
 
   Widget sidebarItem({
+    required Key key,
     required IconData icon,
     required String label,
     required int index,
@@ -55,6 +59,7 @@ class NavigationSidebar extends StatelessWidget {
     final bool isSelected = controller.selectedIndex == index;
 
     return ListTile(
+      key: key,
       leading: Icon(icon, color: isSelected ? Colors.blue : Colors.black),
       title: Text(
         label,
