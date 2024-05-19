@@ -20,6 +20,40 @@ void main() {
     await tester.pumpAndSettle();
 
     // Vérifier que nous sommes redirigés vers le tableau de bord
-    expect(find.text('Tableau de bord'), findsOneWidget);
+    expect(find.byKey(Key('pageTitle_Tableau de bord')), findsOneWidget);
+  });
+
+  testWidgets('Navigation and Logout Test', (WidgetTester tester) async {
+    app.main();
+    await tester.pumpAndSettle();
+
+    // Check that we are on the login page
+    expect(find.text('Connexion'), findsOneWidget);
+
+    // Saisir l'email et le mot de passe
+    await tester.enterText(find.byKey(Key('emailField')), 'secretary@soignemoi.com');
+    await tester.enterText(find.byKey(Key('passwordField')), '19962305Vp');
+    await tester.tap(find.byKey(Key('loginButton')));
+    await tester.pumpAndSettle();
+
+    // Check that we are redirected to the dashboard
+    expect(find.byKey(Key('pageTitle_Tableau de bord')), findsOneWidget);
+
+    // Navigate to Patients
+    await tester.tap(find.byKey(Key('nav_patients')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(Key('pageTitle_Patients')), findsOneWidget);
+
+    // Navigate to Doctors
+    await tester.tap(find.byKey(Key('nav_doctors')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(Key('pageTitle_Docteurs')), findsOneWidget);
+
+    // Logout
+    await tester.tap(find.byKey(Key('logoutButton')));
+    await tester.pumpAndSettle();
+
+    // Check that we are redirected to the login page
+    expect(find.text('Connexion'), findsOneWidget);
   });
 }
