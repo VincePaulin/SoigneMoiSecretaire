@@ -3,6 +3,7 @@ import 'package:soigne_moi_secretaire/screens/login/login.dart';
 
 Widget buildLoginEmailTextField(LoginController controller) {
   return TextField(
+    key: const Key('emailField'),
     readOnly: controller.loading,
     autocorrect: false,
     autofocus: true,
@@ -29,6 +30,7 @@ Widget buildLoginEmailTextField(LoginController controller) {
 
 Widget buildLoginPasswordTextField(LoginController controller) {
   return TextField(
+    key: const Key('passwordField'),
     readOnly: controller.loading,
     autocorrect: false,
     autofillHints: controller.loading ? null : [AutofillHints.password],
@@ -68,6 +70,7 @@ Widget buildLoginButton(LoginController controller) {
     child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: ElevatedButton(
+        key: const Key('loginButton'),
         onPressed: controller.loading ? null : controller.login,
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.green,
