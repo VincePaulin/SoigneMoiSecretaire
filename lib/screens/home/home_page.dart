@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soigne_moi_secretaire/screens/dashboard_page.dart';
+import 'package:soigne_moi_secretaire/screens/doctor_list_page.dart';
 import 'package:soigne_moi_secretaire/screens/home/home.dart';
 import 'package:soigne_moi_secretaire/widgets/home_header.dart';
 import 'package:soigne_moi_secretaire/widgets/navigation_bar.dart';
@@ -48,7 +49,9 @@ class HomePage extends StatelessWidget {
           controller: controller,
         );
       case 1:
-        return Container();
+        return DoctorsView(
+          controller: controller,
+        );
       default:
         return DashboardPage(
           controller: controller,

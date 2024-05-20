@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:soigne_moi_secretaire/api/api_function.dart';
 import 'package:soigne_moi_secretaire/model/doctor.dart';
@@ -29,6 +30,7 @@ class HomeController extends State<Home> {
     super.initState();
     fetchEntryOutput();
     fetchDoctorToday();
+    fetchDoctors();
   }
 
   void updateIndex(int index) {
@@ -70,6 +72,33 @@ class HomeController extends State<Home> {
     } catch (e) {
       showErrorDialog(e.toString(), context);
     }
+  }
+
+  List<Doctor> doctorsList = [];
+  List<Doctor> filteredDoctorsList = [];
+
+  void fetchDoctors() async {
+    try {
+      List<Doctor>? doctors = await Api().fetchAllDoctors();
+      setState(() {
+        doctorsList = doctors;
+      });
+    } catch (e) {
+      if (kDebugMode) {
+        print('Failed to fetch doctors: $e');
+        showErrorDialog(e.toString(), context);
+      }
+    }
+  }
+
+  void filterDoctors(String query) {
+    setState(() {
+      filteredDoctorsList = doctorsList
+          .where((doctor) =>
+              doctor.fullName.toLowerCase().contains(query.toLowerCase()) ||
+              doctor.specialty.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+    });
   }
 
   @override

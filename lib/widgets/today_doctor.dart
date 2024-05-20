@@ -25,7 +25,7 @@ class TodayDoctorList extends StatelessWidget {
                 ? Text("Aucun docteur présent aujourd'hui")
                 : ListView.builder(
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: doctors.length,
                     itemBuilder: (context, index) {
                       final doctor = doctors[index];

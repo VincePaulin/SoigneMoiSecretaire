@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:soigne_moi_secretaire/config/app_config.dart';
+import 'package:soigne_moi_secretaire/model/doctor.dart';
 
 class Api {
   final dio = Dio();
@@ -85,6 +86,34 @@ class Api {
       final data = response.data;
 
       return data;
+    } on DioException catch (e) {
+      if (e.type == DioExceptionType.connectionError) {
+        throw 'Erreur de réseau';
+      }
+      final errorMessage =
+          e.response?.data['error'] ?? e.response?.data['message'];
+      throw errorMessage;
+    } catch (e) {
+      throw 'Erreur de réseau';
+    }
+  }
+
+  Future<List<Doctor>> fetchAllDoctors() async {
+    dio.options.baseUrl = AppConfig.baseUrl;
+
+    try {
+      final response = await dio.get(
+        '/doctors',
+        options: await _generateOptions(),
+      );
+
+      final data = response.data['doctors'];
+
+      // Assuming data is a list of JSON objects
+      final List<Doctor> doctorList =
+          (data as List<dynamic>).map((item) => Doctor.fromJson(item)).toList();
+
+      return doctorList;
     } on DioException catch (e) {
       if (e.type == DioExceptionType.connectionError) {
         throw 'Erreur de réseau';
