@@ -84,6 +84,7 @@ class PrescriptionsList extends StatelessWidget {
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Text(prescription.doctor!),
               Text(
                   'Start: ${DateFormat('dd/MM/yyyy').format(prescription.startDate)}'),
               Text(

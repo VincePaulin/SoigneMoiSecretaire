@@ -5,6 +5,7 @@ class Prescription {
   final List<Drug> drugs;
   final DateTime startDate;
   DateTime endDate;
+  final String? doctor;
 
   Prescription({
     this.id,
@@ -12,6 +13,7 @@ class Prescription {
     required this.drugs,
     required this.startDate,
     required this.endDate,
+    this.doctor,
   });
 
   // Copy constructor
@@ -20,7 +22,8 @@ class Prescription {
         id = prescription.id,
         drugs = List<Drug>.from(prescription.drugs),
         startDate = prescription.startDate,
-        endDate = prescription.endDate;
+        endDate = prescription.endDate,
+        doctor = prescription.doctor;
 
   // Method to update the end date of the prescription
   void updateEndDate(DateTime newEndDate) {
@@ -36,6 +39,7 @@ class Prescription {
           .toList(),
       startDate: DateTime.parse(json['start_date']),
       endDate: DateTime.parse(json['end_date']),
+      doctor: json['doctor'] ?? "",
     );
   }
 }
