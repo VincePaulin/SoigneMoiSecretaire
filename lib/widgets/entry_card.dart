@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soigne_moi_secretaire/screens/home/home.dart';
+import 'package:soigne_moi_secretaire/screens/medical_folder/medical_folder.dart';
 
 class EntryCard extends StatelessWidget {
   final HomeController controller;
@@ -19,7 +20,7 @@ class EntryCard extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
-            Container(
+            SizedBox(
               height: 200,
               child: ListView.builder(
                 shrinkWrap: true,
@@ -29,6 +30,16 @@ class EntryCard extends StatelessWidget {
                   return ListTile(
                     title: Text("${entry.user!.firstName} ${entry.user!.name}"),
                     subtitle: Text(entry.motif),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MedicalFolder(
+                            user: entry.user!,
+                          ),
+                        ),
+                      );
+                    },
                   );
                 },
               ),

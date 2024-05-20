@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soigne_moi_secretaire/screens/home/home.dart';
+import 'package:soigne_moi_secretaire/screens/medical_folder/medical_folder.dart';
 
 class ExitCard extends StatelessWidget {
   final HomeController controller;
@@ -19,7 +20,7 @@ class ExitCard extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
-            Container(
+            SizedBox(
               height: 200,
               child: ListView.builder(
                 shrinkWrap: true,
@@ -30,6 +31,16 @@ class ExitCard extends StatelessWidget {
                     title:
                         Text("${output.user?.firstName} ${output.user?.name}"),
                     subtitle: Text(output.motif),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MedicalFolder(
+                            user: output.user!,
+                          ),
+                        ),
+                      );
+                    },
                   );
                 },
               ),
