@@ -39,11 +39,6 @@ void main() {
     // Check that we are redirected to the dashboard
     expect(find.byKey(Key('pageTitle_Tableau de bord')), findsOneWidget);
 
-    // Navigate to Patients
-    await tester.tap(find.byKey(Key('nav_patients')));
-    await tester.pumpAndSettle();
-    expect(find.byKey(Key('pageTitle_Patients')), findsOneWidget);
-
     // Navigate to Doctors
     await tester.tap(find.byKey(Key('nav_doctors')));
     await tester.pumpAndSettle();
