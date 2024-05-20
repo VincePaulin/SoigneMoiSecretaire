@@ -36,6 +36,7 @@ class DoctorsView extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return Card(
               child: ListTile(
+                key: const Key('doctorItem'),
                 leading: CustomAvatar(
                   sex: doctors[index].sex,
                   avatarUrl: doctors[index].avatarURL,

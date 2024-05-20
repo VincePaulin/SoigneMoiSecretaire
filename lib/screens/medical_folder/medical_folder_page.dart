@@ -17,7 +17,8 @@ class MedicalFolderPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Patient Details'),
+        title:
+            const Text('Patient Details', key: Key('pageTitle_Medical Folder')),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(26),

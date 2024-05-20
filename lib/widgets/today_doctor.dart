@@ -52,6 +52,7 @@ class TodayDoctorItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      key: const Key('todayDoctorItem'),
       leading: CustomAvatar(
         sex: doctor.sex,
         avatarUrl: doctor.avatarURL,

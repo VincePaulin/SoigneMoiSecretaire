@@ -75,8 +75,9 @@ class DoctorDetailsDialog extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           "Profile",
+          key: Key('pageTitle_Doctor Details'),
           style: TextStyle(
             color: Colors.red,
             fontSize: 24,

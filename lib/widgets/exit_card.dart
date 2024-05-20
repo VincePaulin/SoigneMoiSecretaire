@@ -35,6 +35,7 @@ class ExitCard extends StatelessWidget {
                       itemBuilder: (context, index) {
                         final output = controller.outputs[index];
                         return ListTile(
+                          key: const Key('outputItem'),
                           title: Text(
                               "${output.user?.firstName} ${output.user?.name}"),
                           subtitle: Text(output.motif),

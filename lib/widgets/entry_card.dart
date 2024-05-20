@@ -35,6 +35,7 @@ class EntryCard extends StatelessWidget {
                       itemBuilder: (context, index) {
                         final entry = controller.entrys[index];
                         return ListTile(
+                          key: const Key('entryItem'),
                           title: Text(
                               "${entry.user!.firstName} ${entry.user!.name}"),
                           subtitle: Text(entry.motif),

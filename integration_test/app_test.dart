@@ -10,16 +10,16 @@ void main() {
     app.main();
     await tester.pumpAndSettle();
 
-    // Vérifier que nous sommes sur la page de connexion
+    // Verify we are on the login page
     expect(find.text('Connexion'), findsOneWidget);
 
-    // Saisir l'email et le mot de passe
+    // Enter email and password
     await tester.enterText(find.byKey(Key('emailField')), 'secretary@soignemoi.com');
     await tester.enterText(find.byKey(Key('passwordField')), '19962305Vp');
     await tester.tap(find.byKey(Key('loginButton')));
     await tester.pumpAndSettle();
 
-    // Vérifier que nous sommes redirigés vers le tableau de bord
+    // Verify we are redirected to the dashboard
     expect(find.byKey(Key('pageTitle_Tableau de bord')), findsOneWidget);
   });
 
@@ -27,16 +27,16 @@ void main() {
     app.main();
     await tester.pumpAndSettle();
 
-    // Check that we are on the login page
+    // Verify we are on the login page
     expect(find.text('Connexion'), findsOneWidget);
 
-    // Saisir l'email et le mot de passe
+    // Enter email and password
     await tester.enterText(find.byKey(Key('emailField')), 'secretary@soignemoi.com');
     await tester.enterText(find.byKey(Key('passwordField')), '19962305Vp');
     await tester.tap(find.byKey(Key('loginButton')));
     await tester.pumpAndSettle();
 
-    // Check that we are redirected to the dashboard
+    // Verify we are redirected to the dashboard
     expect(find.byKey(Key('pageTitle_Tableau de bord')), findsOneWidget);
 
     // Navigate to Doctors
@@ -48,7 +48,119 @@ void main() {
     await tester.tap(find.byKey(Key('logoutButton')));
     await tester.pumpAndSettle();
 
-    // Check that we are redirected to the login page
+    // Verify we are redirected to the login page
     expect(find.text('Connexion'), findsOneWidget);
+  });
+
+  testWidgets('Entry and Output Item Click Test', (WidgetTester tester) async {
+    app.main();
+    await tester.pumpAndSettle();
+
+    // Verify we are on the login page
+    expect(find.text('Connexion'), findsOneWidget);
+
+    // Enter email and password
+    await tester.enterText(find.byKey(Key('emailField')), 'secretary@soignemoi.com');
+    await tester.enterText(find.byKey(Key('passwordField')), '19962305Vp');
+    await tester.tap(find.byKey(Key('loginButton')));
+    await tester.pumpAndSettle();
+
+    // Verify we are redirected to the dashboard
+    expect(find.byKey(Key('pageTitle_Tableau de bord')), findsOneWidget);
+
+    // Check if there is any entry
+    if (tester.widgetList(find.byKey(Key('entryItem'))).isNotEmpty) {
+      // Tap on the first entry item
+      await tester.tap(find.byKey(Key('entryItem')).first);
+      await tester.pumpAndSettle();
+      // Verify we are on the medical folder page
+      expect(find.byKey(Key('pageTitle_Medical Folder')), findsOneWidget);
+
+      // Swipe to the second tab
+      await tester.drag(find.byType(TabBarView), const Offset(-200, 0));
+      await tester.pumpAndSettle();
+
+      // Verify we are on the second tab
+      expect(find.text('Prescription'), findsOneWidget);
+
+      // Navigate back
+      await tester.tap(find.byTooltip('Back'));
+      await tester.pumpAndSettle();
+    }
+
+    // Check if there is any output
+    if (tester.widgetList(find.byKey(Key('outputItem'))).isNotEmpty) {
+      // Tap on the first output item
+      await tester.tap(find.byKey(Key('outputItem')).first);
+      await tester.pumpAndSettle();
+      // Verify we are on the medical folder page
+      expect(find.byKey(Key('pageTitle_Medical Folder')), findsOneWidget);
+
+      // Swipe to the second tab
+      await tester.drag(find.byType(TabBarView), const Offset(-200, 0));
+      await tester.pumpAndSettle();
+
+      // Verify we are on the second tab
+      expect(find.text('Prescription'), findsOneWidget);
+    }
+  });
+
+  testWidgets('Today Doctor Item Click Test', (WidgetTester tester) async {
+    app.main();
+    await tester.pumpAndSettle();
+
+    // Verify we are on the login page
+    expect(find.text('Connexion'), findsOneWidget);
+
+    // Enter email and password
+    await tester.enterText(find.byKey(Key('emailField')), 'secretary@soignemoi.com');
+    await tester.enterText(find.byKey(Key('passwordField')), '19962305Vp');
+    await tester.tap(find.byKey(Key('loginButton')));
+    await tester.pumpAndSettle();
+
+    // Verify we are redirected to the dashboard
+    expect(find.byKey(Key('pageTitle_Tableau de bord')), findsOneWidget);
+
+    // Check if there is any doctor today
+    if (tester.widgetList(find.byKey(Key('todayDoctorItem'))).isNotEmpty) {
+      // Tap on the first doctor today item
+      await tester.tap(find.byKey(Key('todayDoctorItem')).first);
+      await tester.pumpAndSettle();
+
+      // Verify we are on the doctor's detail page
+      expect(find.byKey(Key('pageTitle_Doctor Details')), findsOneWidget);
+    }
+  });
+
+  testWidgets('Navigate to Doctors and Click Doctor Item Test', (WidgetTester tester) async {
+    app.main();
+    await tester.pumpAndSettle();
+
+    // Verify we are on the login page
+    expect(find.text('Connexion'), findsOneWidget);
+
+    // Enter email and password
+    await tester.enterText(find.byKey(Key('emailField')), 'secretary@soignemoi.com');
+    await tester.enterText(find.byKey(Key('passwordField')), '19962305Vp');
+    await tester.tap(find.byKey(Key('loginButton')));
+    await tester.pumpAndSettle();
+
+    // Verify we are redirected to the dashboard
+    expect(find.byKey(Key('pageTitle_Tableau de bord')), findsOneWidget);
+
+    // Navigate to Doctors
+    await tester.tap(find.byKey(Key('nav_doctors')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(Key('pageTitle_Docteurs')), findsOneWidget);
+
+    // Check if there is any doctor in the list
+    if (tester.widgetList(find.byKey(Key('doctorItem'))).isNotEmpty) {
+      // Tap on the first doctor item
+      await tester.tap(find.byKey(Key('doctorItem')).first);
+      await tester.pumpAndSettle();
+
+      // Verify we are on the doctor's detail page
+      expect(find.byKey(Key('pageTitle_Doctor Details')), findsOneWidget);
+    }
   });
 }
