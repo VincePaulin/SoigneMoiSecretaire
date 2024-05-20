@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:soigne_moi_secretaire/model/doctor.dart';
+
+import 'custom_avatar.dart';
+import 'doctor_dialog.dart';
 
 class TodayDoctorList extends StatelessWidget {
-  const TodayDoctorList({super.key});
+  final List<Doctor> doctors;
+  const TodayDoctorList({super.key, required this.doctors});
 
   @override
   Widget build(BuildContext context) {
@@ -11,20 +16,24 @@ class TodayDoctorList extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Docteur présents aujourd'hui"),
+            Text(
+              "Docteur présents aujourd'hui",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
             const SizedBox(height: 8),
-            TodayDoctorItem(
-              name: 'Ronald Richards',
-              status: 'Disponible',
-            ),
-            TodayDoctorItem(
-              name: 'Floyd Miles',
-              status: 'Disponible',
-            ),
-            TodayDoctorItem(
-              name: 'Cody Fisher',
-              status: 'Disponible',
-            ),
+            doctors.isEmpty
+                ? Text("Aucun docteur présent aujourd'hui")
+                : ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: doctors.length,
+                    itemBuilder: (context, index) {
+                      final doctor = doctors[index];
+                      return TodayDoctorItem(
+                        doctor: doctor,
+                      );
+                    },
+                  ),
           ],
         ),
       ),
@@ -33,25 +42,37 @@ class TodayDoctorList extends StatelessWidget {
 }
 
 class TodayDoctorItem extends StatelessWidget {
-  final String name;
-  final String status;
+  final Doctor doctor;
 
   const TodayDoctorItem({
     super.key,
-    required this.name,
-    required this.status,
+    required this.doctor,
   });
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(name),
+      leading: CustomAvatar(
+        sex: doctor.sex,
+        avatarUrl: doctor.avatarURL,
+      ),
+      title: Text(doctor.fullName),
       trailing: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Text(status),
+          Text(doctor.specialty),
         ],
       ),
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return DoctorDetailsDialog(
+              doctor: doctor,
+            );
+          },
+        );
+      },
     );
   }
 }

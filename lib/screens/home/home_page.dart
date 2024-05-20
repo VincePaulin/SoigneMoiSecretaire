@@ -49,7 +49,7 @@ class HomePage extends StatelessWidget {
           controller: controller,
         );
       case 1:
-        return TodayDoctorList();
+        return Container();
       default:
         return DashboardPage(
           controller: controller,

@@ -54,7 +54,14 @@ class DashboardPage extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 16),
-        TodayDoctorList(),
+        Row(
+          children: [
+            Expanded(
+                child: TodayDoctorList(
+              doctors: controller.doctorToday,
+            ))
+          ],
+        ),
       ],
     );
   }

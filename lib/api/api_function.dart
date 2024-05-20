@@ -48,6 +48,30 @@ class Api {
     }
   }
 
+  Future<Map<String, dynamic>> fetchDoctorPresent() async {
+    dio.options.baseUrl = AppConfig.baseUrl;
+
+    try {
+      final response = await dio.get(
+        '/doctors-with-appointments-today',
+        options: await _generateOptions(),
+      );
+
+      final data = response.data;
+
+      return data;
+    } on DioException catch (e) {
+      if (e.type == DioExceptionType.connectionError) {
+        throw 'Erreur de réseau';
+      }
+      final errorMessage =
+          e.response?.data['error'] ?? e.response?.data['message'];
+      throw errorMessage;
+    } catch (e) {
+      throw 'Erreur de réseau';
+    }
+  }
+
   Future<Map<String, dynamic>> fetchUserFolder(String id) async {
     dio.options.baseUrl = AppConfig.baseUrl;
 
