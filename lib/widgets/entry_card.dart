@@ -22,27 +22,35 @@ class EntryCard extends StatelessWidget {
             const SizedBox(height: 8),
             SizedBox(
               height: 200,
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: controller.entrys.length,
-                itemBuilder: (context, index) {
-                  final entry = controller.entrys[index];
-                  return ListTile(
-                    title: Text("${entry.user!.firstName} ${entry.user!.name}"),
-                    subtitle: Text(entry.motif),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => MedicalFolder(
-                            user: entry.user!,
-                          ),
-                        ),
-                      );
-                    },
-                  );
-                },
-              ),
+              child: controller.entrys.isEmpty
+                  ? Center(
+                      child: Text(
+                        "Aucune entrée de prévu aujourd'hui",
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                    )
+                  : ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: controller.entrys.length,
+                      itemBuilder: (context, index) {
+                        final entry = controller.entrys[index];
+                        return ListTile(
+                          title: Text(
+                              "${entry.user!.firstName} ${entry.user!.name}"),
+                          subtitle: Text(entry.motif),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MedicalFolder(
+                                  user: entry.user!,
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    ),
             ),
           ],
         ),

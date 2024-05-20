@@ -22,28 +22,35 @@ class ExitCard extends StatelessWidget {
             const SizedBox(height: 8),
             SizedBox(
               height: 200,
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: controller.outputs.length,
-                itemBuilder: (context, index) {
-                  final output = controller.outputs[index];
-                  return ListTile(
-                    title:
-                        Text("${output.user?.firstName} ${output.user?.name}"),
-                    subtitle: Text(output.motif),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => MedicalFolder(
-                            user: output.user!,
-                          ),
-                        ),
-                      );
-                    },
-                  );
-                },
-              ),
+              child: controller.outputs.isEmpty
+                  ? Center(
+                      child: Text(
+                        "Aucune entrée de prévu aujourd'hui",
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                    )
+                  : ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: controller.outputs.length,
+                      itemBuilder: (context, index) {
+                        final output = controller.outputs[index];
+                        return ListTile(
+                          title: Text(
+                              "${output.user?.firstName} ${output.user?.name}"),
+                          subtitle: Text(output.motif),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MedicalFolder(
+                                  user: output.user!,
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    ),
             ),
           ],
         ),
