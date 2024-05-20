@@ -3,7 +3,6 @@ import 'package:soigne_moi_secretaire/screens/dashboard_page.dart';
 import 'package:soigne_moi_secretaire/screens/home/home.dart';
 import 'package:soigne_moi_secretaire/widgets/home_header.dart';
 import 'package:soigne_moi_secretaire/widgets/navigation_bar.dart';
-import 'package:soigne_moi_secretaire/widgets/today_doctor.dart';
 
 class HomePage extends StatelessWidget {
   final HomeController controller;

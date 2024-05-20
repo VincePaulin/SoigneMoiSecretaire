@@ -21,7 +21,6 @@ class HomeController extends State<Home> {
 
   static const List<String> pageTitles = [
     'Tableau de bord',
-    'Patients',
     'Docteurs',
   ];
 

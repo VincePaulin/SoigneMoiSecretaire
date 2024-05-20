@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart'; // Importer le package intl
+import 'package:intl/intl.dart';
 import 'package:soigne_moi_secretaire/screens/home/home.dart';
 import 'package:soigne_moi_secretaire/widgets/entry_card.dart';
 import 'package:soigne_moi_secretaire/widgets/exit_card.dart';

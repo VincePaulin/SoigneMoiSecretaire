@@ -13,9 +13,6 @@ class HomeHeader extends StatelessWidget {
         title = 'Tableau de bord';
         break;
       case 1:
-        title = 'Patients';
-        break;
-      case 2:
         title = 'Docteurs';
         break;
       default:

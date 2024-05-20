@@ -40,17 +40,10 @@ class NavigationSidebar extends StatelessWidget {
             context: context,
           ),
           sidebarItem(
-            key: const Key('nav_patients'),
-            icon: Icons.person,
-            label: 'Patients',
-            index: 1,
-            context: context,
-          ),
-          sidebarItem(
             key: const Key('nav_doctors'),
             icon: Icons.local_hospital_rounded,
             label: 'Docteurs',
-            index: 2,
+            index: 1,
             context: context,
           ),
           const Spacer(),
