@@ -31,7 +31,8 @@ class Stay {
       startDate: _parseDate(json['start_date']),
       endDate: _parseDate(json['end_date']),
       precision: json['precision'] ?? "",
-      doctorId: json['doctor_id'], // Assuming doctorId is nullable in JSON
+      doctorId:
+          json['doctor_id'].toString(), // Assuming doctorId is nullable in JSON
       userId: json['user_id'].toString() ?? "",
       user: json['user'] != null ? User.fromJson(json['user']) : null,
     );
