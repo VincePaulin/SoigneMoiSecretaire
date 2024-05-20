@@ -15,6 +15,7 @@ class HomeController extends State<Home> {
   int selectedIndex = 0;
   List<Stay> entrys = [];
   List<Stay> outputs = [];
+  bool loading = true;
 
   static const List<String> pageTitles = [
     'Tableau de bord',
@@ -34,6 +35,11 @@ class HomeController extends State<Home> {
 
   String get selectedPageTitle => pageTitles[selectedIndex];
 
+  void reload() {
+    setState(() => loading = true);
+    fetchEntryOutput();
+  }
+
   Future<void> fetchEntryOutput() async {
     try {
       final data = await Api().fetchOngoingStays();
@@ -43,6 +49,7 @@ class HomeController extends State<Home> {
       setState(() {
         entrys = entryData.map((item) => Stay.fromJson(item)).toList();
         outputs = outputData.map((item) => Stay.fromJson(item)).toList();
+        loading = false;
       });
     } catch (e) {
       showErrorDialog(e.toString(), context);
@@ -51,8 +58,14 @@ class HomeController extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return HomePage(
-      controller: this,
-    );
+    if (!loading) {
+      return HomePage(
+        controller: this,
+      );
+    } else {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
   }
 }

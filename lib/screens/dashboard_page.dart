@@ -11,7 +11,7 @@ class DashboardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Obtenir la date d'aujourd'hui
+    // Get today's date
     String today = DateFormat('dd/MM/yyyy').format(DateTime.now());
 
     return Column(
@@ -21,12 +21,23 @@ class DashboardPage extends StatelessWidget {
         // Show today's date at the top
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 16.0),
-          child: Text(
-            'Aujourd\'hui: $today',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
-            ),
+          child: Row(
+            children: [
+              Text(
+                'Aujourd\'hui: $today',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
+              IconButton(
+                icon: Icon(Icons.refresh),
+                onPressed: () {
+                  // Add your refresh logic here
+                  controller.reload();
+                },
+              ),
+            ],
           ),
         ),
         Row(
