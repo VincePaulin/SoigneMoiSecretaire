@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: kDebugMode ?true :false,
       title: 'SoigneMoi Secretaire',
       theme: buildAppTheme(),
       initialRoute: '/',
