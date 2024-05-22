@@ -38,6 +38,12 @@ Vous devez aussi avoir installé Flutter.
    ```bash
     flutter run
     ```
+   
+Pour faire des tests d'intégration
+
+   ```bash
+    flutter test integration_test
+   ```
 
 ### Explication de la Stack Technique
 
