@@ -30,7 +30,7 @@ Vous devez aussi avoir installé Flutter.
 
     ```bash
     git clone https://github.com/VincePaulin/SoigneMoiSecretaire.git
-    cd SoigneMoiWeb
+    cd SoigneMoiSecretaire
     ```
 
 2. Lancer l'application en mode debug
